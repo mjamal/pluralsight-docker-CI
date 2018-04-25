@@ -11,6 +11,10 @@ RUN yum install -y npm
 # Copy app to /src
 COPY . /src
 
+# Fix for older NPM installs
+# https://github.com/npm/npm/issues/20203
+RUN npm config set strict-ssl false
+
 # Install app and dependencies into /src
 RUN cd /src; npm install
 
